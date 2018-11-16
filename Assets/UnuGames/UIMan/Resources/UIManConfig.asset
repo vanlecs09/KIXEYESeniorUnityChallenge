@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010af554679ddb14ca8f5288595dcdde, type: 3}
   m_Name: UIManConfig
   m_EditorClassIdentifier: 
-  dialogPrefabFolder: UnuGames/UIManExample/Resources/Dialogs/
-  screenPrefabFolder: UnuGames/UIManExample/Resources/Screens/
-  backgroundRootFolder: UnuGames/UIManExample/Resources/Backgrounds/
-  animRootFolder: UnuGames/UIManExample/Animations/
+  dialogPrefabFolder: RunnerGame/Resources/Dialogs/
+  screenPrefabFolder: RunnerGame/Resources/Screens/
+  backgroundRootFolder: RunnerGame/Resources/Backgrounds/
+  animRootFolder: RunnerGame/Animations/
   modelScriptFolder: /UnuGames/UIManExample/Scripts
-  dialogScriptFolder: /UnuGames/UIManExample/Scripts
-  screenScriptFolder: /UnuGames/UIManExample/Scripts
-  selectedType: UIGameplay
+  dialogScriptFolder: /RunnerGame/Scripts/UIs
+  screenScriptFolder: /RunnerGame/Scripts/UIs
+  selectedType: UIStartScreen
   generatingType: 
   generatingTypeIsDialog: 0
