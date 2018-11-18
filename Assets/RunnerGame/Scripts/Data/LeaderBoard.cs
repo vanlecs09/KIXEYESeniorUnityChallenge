@@ -25,6 +25,7 @@ public class LeaderBoard
 
     public void SendScoreToLeaderBoard()
     {
+        // UIMan.Instance.show
         WebService.Instance.SendScoreToLeaderBoard(OnComplete, OnError, GameData.Instance.UserData);
     }
 

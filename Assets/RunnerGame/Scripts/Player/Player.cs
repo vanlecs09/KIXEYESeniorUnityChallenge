@@ -35,7 +35,6 @@ public class Player
 
     public void Update(float delta)
     {
-        Debug.Log(_playerRigibody.velocity);
     }
 
     public void FixedUpdate(float delta)

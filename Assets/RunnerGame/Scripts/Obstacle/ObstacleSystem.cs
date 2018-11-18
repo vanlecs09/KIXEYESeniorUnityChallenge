@@ -41,7 +41,7 @@ public class ObstacleSystem
         UGame.EventManager.StartListening(EventNames.SPAWN_OBSTACLE, SpawnObstacle);
 
         _minPos = GameObject.Find("Floor").GetComponent<BoxCollider2D>().bounds.max;
-        _circleRadius = _obstaclePrefab.GetComponent<CircleCollider2D>().radius;
+        _circleRadius = _obstaclePrefab.GetComponent<BoxCollider2D>().bounds.size.y;
     }
 
     public void Update(float delta)
@@ -96,8 +96,10 @@ public class ObstacleSystem
         {
             _lastObstaclePosition = _playerTrans.position;
         }
-        result = _lastObstaclePosition + new Vector3(Random.Range(minRandomDistance, maxRandomDistance), 0, 0);
-        result = new Vector3(result.x, _minPos.y + _circleRadius * 5, result.z);
+        var nextDistanceX = Random.Range(Gamedefine.MIN_DISTANCE_RANDOM, Gamedefine.MAX_DISTANCE_RANDOM);
+        var nextDistanceY = Random.Range(0, Gamedefine.MAX_OBSTACLE_TALL);
+        result = _lastObstaclePosition + new Vector3(nextDistanceX, 0, 0);
+        result = new Vector3(result.x, _minPos.y + _circleRadius * 5 + nextDistanceY, result.z);
         return result;
     }
 }

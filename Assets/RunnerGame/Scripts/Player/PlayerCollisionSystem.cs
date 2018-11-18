@@ -7,7 +7,7 @@ public class PlayerCollisionSystem : MonoBehaviour
     {
         if (col.gameObject.tag == GameTags.OBSTACLE)
         {
-            UGame.EventManager.TriggerEvent(EventNames.COLLISION_WTIH_OBSTACLE);
+            UGame.EventManager.TriggerEvent(EventNames.GMAE_OVER);
         }
         else if (col.gameObject.tag == GameTags.FLOOR)
         {
@@ -19,7 +19,7 @@ public class PlayerCollisionSystem : MonoBehaviour
     {
         if (col.gameObject.tag == GameTags.OBSTACLE)
         {
-            UGame.EventManager.TriggerEvent(EventNames.GMAE_OVER);
+            
         }
         else if (col.gameObject.tag == GameTags.FLOOR)
         {
