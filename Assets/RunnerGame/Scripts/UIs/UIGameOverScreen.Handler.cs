@@ -32,7 +32,21 @@ public partial class UIGameOverScreen : UIManScreen {
 #endregion
 
 #region Custom implementation
+	void Start()
+	{
+		Score = GameData.Instance.PlayerScore;
+	}
+	void OnBtnRetry()
+	{
+		UIMan.Instance.DestroyUI<UIGameOverScreen>();
+		UIMan.Instance.ShowScreen<UIGamePlayScreen>();
+	}
 
+	void OnBtnHome()
+	{
+		UIMan.Instance.DestroyUI<UIGameOverScreen>();
+		UIMan.Instance.ShowScreen<UIStartScreen>();
+	}
 	// Your custom code here
 #endregion
 

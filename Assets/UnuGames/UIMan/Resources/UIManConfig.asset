@@ -18,6 +18,6 @@ MonoBehaviour:
   modelScriptFolder: /UnuGames/UIManExample/Scripts
   dialogScriptFolder: /RunnerGame/Scripts/UIs
   screenScriptFolder: /RunnerGame/Scripts/UIs
-  selectedType: UIStartScreen
+  selectedType: UIPausePopUp
   generatingType: 
-  generatingTypeIsDialog: 0
+  generatingTypeIsDialog: 1

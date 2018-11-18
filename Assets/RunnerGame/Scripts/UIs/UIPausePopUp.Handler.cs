@@ -32,7 +32,20 @@ public partial class UIPausePopUp : UIManDialog {
 #endregion
 
 #region Custom implementation
+	public void OnBtnQuit()
+	{
+		#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+		#else
+		Application.Quit();
+     	#endif
+	}
 
+	public void OnBtnResume()
+	{
+		this.HideMe();
+		UGame.EventManager.TriggerEvent(EventNames.RESUME_GAME);
+	}
 	// Your custom code here
 #endregion
 

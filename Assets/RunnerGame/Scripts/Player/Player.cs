@@ -2,48 +2,69 @@ using UnityEngine;
 
 public class Player
 {
-    GameObject playerGameObject;
-    Transform playerTrans;
-    Rigidbody2D playerRigibody;
+    GameObject _playerGameObject;
+    Transform _playerTrans;
+    Rigidbody2D _playerRigibody;
 
-    PlayerConfig playerConfig;
+    PlayerConfig _playerConfig;
 
-    public Transform PlayerTrans 
+    bool _isOnGround;
+
+    public Transform PlayerTrans
     {
-        get 
-        { 
-            return playerTrans;
+        get
+        {
+            return _playerTrans;
         }
     }
     public void Init()
     {
-        var playerPrefab = ResourceFactory.Load<GameObject>("Player/player");
+        var playerPrefab = ResourceFactory.Load<GameObject>("Player/pref_Player");
+        _playerGameObject = GameObject.Instantiate(playerPrefab);
+        _playerTrans = _playerGameObject.transform;
 
-        playerGameObject = GameObject.Instantiate(playerPrefab);
-        playerTrans = playerGameObject.transform;
-        playerRigibody = playerGameObject.GetComponent<Rigidbody2D>();
-        playerConfig = playerGameObject.GetComponent<PlayerConfig>();
+        _playerConfig = _playerGameObject.GetComponent<PlayerConfig>();
 
-        playerRigibody.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+        _playerRigibody = _playerGameObject.GetComponent<Rigidbody2D>();
+        _playerRigibody.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+        _isOnGround = false;
+
+        UGame.EventManager.StartListening(EventNames.EXIT_COLLISION_WITH_FLOOR, NotOnGround);
+        UGame.EventManager.StartListening(EventNames.COLLISION_WITH_FLOOR, OnGround);
     }
 
     public void Update(float delta)
     {
-        
+
     }
 
     public void FixedUpdate(float delta)
     {
-        
+
     }
 
-    public void Shutdown(float delta)
+    public void Shutdown()
     {
-
+        GameObject.Destroy(_playerGameObject);
+        UGame.EventManager.StopListening(EventNames.EXIT_COLLISION_WITH_FLOOR, NotOnGround);
+        UGame.EventManager.StopListening(EventNames.COLLISION_WITH_FLOOR, OnGround);
     }
 
     public void Jump()
     {
-        playerRigibody.AddForce(Vector2.up * playerConfig.jumpSpeed, ForceMode2D.Force);
+        if (_isOnGround)
+        {
+            _playerRigibody.AddForce(Vector2.up * _playerConfig.JumpSpeed, ForceMode2D.Force);
+        }
+    }
+
+    public void OnGround(System.Object obj = null)
+    {
+        _isOnGround = true;
+    }
+
+    public void NotOnGround(System.Object obj = null)
+    {
+        _isOnGround = false;
     }
 }

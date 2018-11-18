@@ -7,4 +7,11 @@ using UnuGames.MVVM;
 public partial class UIGameOverScreen : UIManScreen {
 
 
+	int _score = 0;
+	[UIManProperty]
+	public int Score {
+		get { return _score; }
+		set { _score = value; OnPropertyChanged(); }
+	}
+
 }

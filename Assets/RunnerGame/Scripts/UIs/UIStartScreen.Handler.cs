@@ -32,6 +32,20 @@ public partial class UIStartScreen : UIManScreen {
 #endregion
 
 #region Custom implementation
+	public void OnBtnStart()
+	{
+		UIMan.Instance.ShowScreen<UIGamePlayScreen>();
+		UIMan.Instance.DestroyUI<UIStartScreen>();
+	}
+
+	public void OnBtnQuit()
+	{
+		#if UNITY_EDITOR
+         UnityEditor.EditorApplication.isPlaying = false;
+    	 #else
+         Application.Quit();
+     	#endif
+	}
 
 	// Your custom code here
 #endregion
