@@ -31,7 +31,16 @@ public class LeaderBoard
 
     void OnComplete(WWW www)
     {
-        var responseCode = WebService.getResponseCode(www);
+        ShowMessage(WebService.getResponseCode(www));
+    }
+
+    void OnError(WWW www)
+    {
+        ShowMessage(WebService.getResponseCode(www), www.error);
+    }
+
+    void ShowMessage(int responseCode, string errorText = "unknow error")
+    {
         switch (responseCode)
         {
             case (int)LeaderBoardReponseCode.OK:
@@ -52,14 +61,9 @@ public class LeaderBoard
                 }
             default:
                 {
-                    UIMan.Instance.ShowPopup("leader board ", "I DONT KNOW");
+                    UIMan.Instance.ShowPopup("leader board ", errorText);
                     break;
                 }
         }
-    }
-
-    void OnError(WWW www)
-    {
-        UIMan.Instance.ShowPopup("leader board ", www.error);
     }
 }

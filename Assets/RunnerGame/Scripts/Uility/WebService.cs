@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnuGames;
 public class WebService : SingletonBehaviour<WebService>
 {
-    string baseUrl = "http://127.0.0.1/";
+    string baseUrl = "http://127.0.0.1:8882/";
     string leaderBoard = "leaderboard";
 
     public void SendScoreToLeaderBoard(Action<WWW> onComplete, Action<WWW> onError, UserData userData)
@@ -21,7 +21,6 @@ public class WebService : SingletonBehaviour<WebService>
         headers.Add("Content-Type", "application/json");
 
         var formData = System.Text.Encoding.UTF8.GetBytes(jsonStr);
-
         WWW www = new WWW(url, formData, headers);
         yield return www;
         Debug.Log(www.error + " ____ " + www.text);
