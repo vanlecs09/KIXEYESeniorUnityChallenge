@@ -42,12 +42,12 @@ public class LeaderBoard
             case (int)LeaderBoardReponseCode.USER_NOT_FOUND:
 
                 {
-                    UIMan.Instance.ShowPopup("leader board ", "USER_NOT_FOUND");
+                    UIMan.Instance.ShowPopup("leader board ", "Error : User not found");
                     break;
                 }
             case (int)LeaderBoardReponseCode.INVALID_USER_NAME:
                 {
-                    UIMan.Instance.ShowPopup("leader board ", "INVALID_USER_NAME");
+                    UIMan.Instance.ShowPopup("leader board ", "Error : Invalid user name");
                     break;
                 }
             default:

@@ -48,7 +48,6 @@ public class ObstacleSystem
     {
         for (int i = _listObstacle.Count - 1; i >= 0; i--)
         {
-
             var obs = _listObstacle[i];
             var isObstacleOutOfScreen = (_playerTrans.position.x - obs.transform.position.x) > 20;
             if (isObstacleOutOfScreen)
@@ -81,7 +80,7 @@ public class ObstacleSystem
     void SpawnObstacle(System.Object obj = null)
     {
         var obstacle = PrefabPoolSystem.Spawn(_obstaclePrefab);
-       
+
         obstacle.transform.position = this.GetNextPosition();
         _lastObstaclePosition = obstacle.transform.position;
 
@@ -92,7 +91,7 @@ public class ObstacleSystem
     Vector3 GetNextPosition()
     {
         var result = Vector3.zero;
-        if(_listObstacle.Count == 0)
+        if (_listObstacle.Count == 0)
         {
             _lastObstaclePosition = _playerTrans.position;
         }

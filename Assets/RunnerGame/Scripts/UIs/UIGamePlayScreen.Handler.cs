@@ -79,11 +79,17 @@ public partial class UIGamePlayScreen : UIManScreen
 
     void UpdateInput()
     {
+        #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Space) == true)
         {
-            Debug.Log("update input");
             _player.Jump();
         }
+        #elif UNITY_ANDROID || UNITY_IOS
+        if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump"))
+        {
+            _player.Jump();
+        }
+        #endif
     }
 
     void OnDestroy()
