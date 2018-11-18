@@ -54,8 +54,8 @@ public partial class UIGamePlayScreen : UIManScreen
         UGame.EventManager.StartListening(EventNames.RESUME_GAME, ResumeGame);
 		UGame.EventManager.StartListening(EventNames.GMAE_OVER, GameOver);
 
-        GameData.Instance.PlayerScore = 0;
-        Score = GameData.Instance.PlayerScore;
+        GameData.Instance.UserData.Score = 0;
+        Score = GameData.Instance.UserData.Score;
     }
 
     void Update()
@@ -104,7 +104,7 @@ public partial class UIGamePlayScreen : UIManScreen
     void PlayerPassObstacle(System.Object obj = null)
     {
         Score += 10;
-        GameData.Instance.PlayerScore = Score;
+        GameData.Instance.UserData.Score = Score;
     }
 
     public void OnBtnPause()

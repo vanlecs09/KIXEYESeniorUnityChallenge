@@ -9,10 +9,13 @@ public class ObstacleSystem
     GameObject _obstaclePrefab;
     GameObject _obstacleSpawnerPrefab;
     Transform _playerTrans;
+    Vector3 _lastObstaclePosition;
+    Vector3 _minPos;
 
-    Vector3 lastObstaclePosition;
+    float maxRandomDistance = 10;
+    float minRandomDistance = 5;
 
-
+    float _circleRadius;
     public Transform PlayerTrans
     {
         get
@@ -36,6 +39,9 @@ public class ObstacleSystem
         _listObstacle = new List<GameObject>();
         _listObstacleNotPass = new List<GameObject>();
         UGame.EventManager.StartListening(EventNames.SPAWN_OBSTACLE, SpawnObstacle);
+
+        _minPos = GameObject.Find("Floor").GetComponent<BoxCollider2D>().bounds.max;
+        _circleRadius = _obstaclePrefab.GetComponent<CircleCollider2D>().radius;
     }
 
     public void Update(float delta)
@@ -75,10 +81,23 @@ public class ObstacleSystem
     void SpawnObstacle(System.Object obj = null)
     {
         var obstacle = PrefabPoolSystem.Spawn(_obstaclePrefab);
-        obstacle.transform.position = _playerTrans.position + new Vector3(10, 0, 0);
-        obstacle.transform.position = new Vector3(obstacle.transform.position.x, lastObstaclePosition.y, obstacle.transform.position.z);
-        lastObstaclePosition = obstacle.transform.position;
+       
+        obstacle.transform.position = this.GetNextPosition();
+        _lastObstaclePosition = obstacle.transform.position;
+
         _listObstacle.Add(obstacle);
         _listObstacleNotPass.Add(obstacle);
+    }
+
+    Vector3 GetNextPosition()
+    {
+        var result = Vector3.zero;
+        if(_listObstacle.Count == 0)
+        {
+            _lastObstaclePosition = _playerTrans.position;
+        }
+        result = _lastObstaclePosition + new Vector3(Random.Range(minRandomDistance, maxRandomDistance), 0, 0);
+        result = new Vector3(result.x, _minPos.y + _circleRadius * 5, result.z);
+        return result;
     }
 }

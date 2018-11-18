@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerConfig : MonoBehaviour
 {
-    public float JumpSpeed;
-    public float MoveSpeed;
+    public float JumpSpeed = 400;
+    public float MoveSpeed = 7;
     
     void Start()
     {
-        JumpSpeed = 300;
-        MoveSpeed = 10;
+        JumpSpeed = 400;
+        MoveSpeed = 7;
     }
 }

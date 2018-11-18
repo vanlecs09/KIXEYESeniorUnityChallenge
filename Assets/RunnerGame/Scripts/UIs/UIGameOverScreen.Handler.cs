@@ -18,6 +18,7 @@ public partial class UIGameOverScreen : UIManScreen {
 	public override void OnShowComplete ()
 	{
 		base.OnShowComplete ();
+		LeaderBoard.Instance.SendScoreToLeaderBoard();
 	}
 
 	public override void OnHide ()
@@ -34,15 +35,15 @@ public partial class UIGameOverScreen : UIManScreen {
 #region Custom implementation
 	void Start()
 	{
-		Score = GameData.Instance.PlayerScore;
+		Score = GameData.Instance.UserData.Score;
 	}
-	void OnBtnRetry()
+	public void OnBtnRetry()
 	{
 		UIMan.Instance.DestroyUI<UIGameOverScreen>();
 		UIMan.Instance.ShowScreen<UIGamePlayScreen>();
 	}
 
-	void OnBtnHome()
+	public void OnBtnHome()
 	{
 		UIMan.Instance.DestroyUI<UIGameOverScreen>();
 		UIMan.Instance.ShowScreen<UIStartScreen>();

@@ -10,8 +10,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        var second = Random.Range(1, 10);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         UGame.EventManager.TriggerEvent(EventNames.SPAWN_OBSTACLE);
         yield return StartCoroutine(SpawnEnemy());
     }

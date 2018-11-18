@@ -26,7 +26,7 @@ public class Player
         _playerConfig = _playerGameObject.GetComponent<PlayerConfig>();
 
         _playerRigibody = _playerGameObject.GetComponent<Rigidbody2D>();
-        _playerRigibody.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
+        _playerRigibody.AddForce(Vector2.right * 7, ForceMode2D.Impulse);
         _isOnGround = false;
 
         UGame.EventManager.StartListening(EventNames.EXIT_COLLISION_WITH_FLOOR, NotOnGround);
@@ -35,7 +35,7 @@ public class Player
 
     public void Update(float delta)
     {
-
+        Debug.Log(_playerRigibody.velocity);
     }
 
     public void FixedUpdate(float delta)
